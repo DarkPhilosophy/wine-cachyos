@@ -2079,9 +2079,9 @@ static struct xdg_activation_token_v1 *wayland_surface_create_token(
     }
 
     xdg_activation_token_v1_set_surface(token, surface->wl_surface);
-    /* An app_id makes GNOME/mutter start a startup sequence (busy cursor) for the token.
-     * Tokens that are only saved for later use must not carry one, or the sequence
-     * never completes and the busy cursor stays. */
+    /* GNOME/mutter shows the busy cursor for startup sequences whose token has an
+     * app_id. A token that is only saved for later use may never be consumed, so
+     * it must not carry one, or the busy cursor stays. */
     if (process_name && activate && set_app_id) xdg_activation_token_v1_set_app_id(token, process_name);
 
     pthread_mutex_lock(&seat->mutex);
