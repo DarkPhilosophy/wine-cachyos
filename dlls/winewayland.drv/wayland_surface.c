@@ -2139,7 +2139,7 @@ void wayland_surface_activate(struct wayland_surface *surface)
     }
     else
     {
-        token = wayland_surface_create_token(surface, TRUE);
+        token = wayland_surface_create_token(surface, TRUE, TRUE);
         xdg_activation_token_v1_add_listener(token, &activate_listener, surface->hwnd);
         xdg_activation_token_v1_commit(token);
     }
